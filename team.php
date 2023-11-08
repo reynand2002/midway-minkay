@@ -5,16 +5,16 @@
             <div id="horizontalTab">
                 <ul class="resp-tabs-list">
                     <li>
-                        <img src="images/teams1.jpg" alt=" " class="img-responsive" />
+                        <img src="images/eliza-s.jpeg" alt=" " class="img-responsive" />
                     </li>
                     <li>
-                        <img src="images/teams2.jpg" alt=" " class="img-responsive" />
+                        <img src="images/lovely-s.jpg" alt=" " class="img-responsive" />
                     </li>
                     <li>
-                        <img src="images/teams3.jpg" alt=" " class="img-responsive" />
+                        <img src="images/reinan-s.jpg" alt=" " class="img-responsive" />
                     </li>
                     <li>
-                        <img src="images/teams4.jpg" alt=" " class="img-responsive" />
+                        <img src="images/junpyo-s.jpg" alt=" " class="img-responsive" />
                     </li>
                 </ul>
                 <div class="resp-tabs-container">

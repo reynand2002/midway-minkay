@@ -34,9 +34,9 @@ if (isset($_POST['booknowA'])) {
     $days = dateDiff($_POST['arrival'], $_POST['departure']);
 
     if ($days <= 0) {
-        $msg = 'Available room today';
+        $msg = 'Available room TODAY';
     } else {
-        $msg =  'Available room From:' . $_POST['arrival'] . ' To: ' . $_POST['departure'];
+        $msg =  'Available room From: ' . '['. $_POST['arrival'].']' . ' To: ' . '['. $_POST['departure'].']';
     }
 
 
@@ -55,11 +55,93 @@ if (isset($_POST['booknowA'])) {
 
 $accomodation = ' | ' . @$_GET['q'];
 ?>
-
 <!-- rooms & rates -->
 <div class="plans-section" id="rooms">
     <div class="container">
         <h3 class="title-w3-agileits title-black-wthree">Rooms And Rates</h3>
+
+        <!-- check availability -->
+        <div class="container">
+            <div class="col-lg-6">
+                <div class="row">
+
+                    <form method="POST" action="index.php?p=rooms">
+                        <div id="sidebarRight-wrap">
+                            <div class="row">
+                                <div class="col-md-10 block">
+                                    <h3> Book a Room</h3>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-10">
+
+                                    <div class="form-group input-group">
+                                        <label>Arrival</label>
+                                        <input type="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="any" data-link-format="yyyy-mm-dd" name="arrival" id="date_pickerfrom" value="<?php echo isset($_POST['arrival']) ? $_POST['arrival'] : date('m/d/Y'); ?>" class="date_pickerfrom input-sm form-control">
+                                        <span class="input-group-btn">
+                                            <i class="date_pickerto fa  fa-calendar"></i>
+                                        </span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group input-group">
+                                        <label>Departure</label>
+                                        <input type="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="any" data-link-format="yyyy-mm-dd" name="departure" id="date_pickerto" value="<?php echo isset($_POST['departure']) ? $_POST['departure'] : date('m/d/Y'); ?>" class="date_pickerto form-control  input-sm">
+                                        <span class="input-group-btn">
+                                            <i class="date_pickerto fa  fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="form-group input-group">
+                                        <label>Person</label>
+                                        <select class=" form-control input-sm " name="person" id="person">
+                                            <?php $sql = "SELECT distinct(`num_person`) as 'NumberPerson' FROM `room`";
+                                            $mydb->setQuery($sql);
+                                            $cur = $mydb->loadResultList();
+                                            foreach ($cur as $result) {
+                                                echo '<option value=' . $result->NumberPerson . '>' . $result->NumberPerson . '</option>';
+                                            }
+
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <button class="btn monbela-btn  btn-primary btn-sm " name="booknowA" type="submit" id="booknowA">Check Availability </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <br />
+            </div>
+        </div>
+
+        <!-- date result -->
+        <div id="bread">
+            <ol class="breadcrumb">
+                <li><a href="<?php echo WEB_ROOT; ?>index.php">Home</a>
+                </li>
+                <li class="active"><?php print $title; ?></li>
+                <li style="color: #02aace; float:right"> <?php print  $msg; ?></li>
+            </ol>
+        </div>
+        <!-- date result -->
+
+        <!-- check availability -->
+
         <div class="priceing-table-main">
             <?php
             $arrival = $_SESSION['arrival'];
@@ -97,7 +179,7 @@ $accomodation = ' | ' . @$_GET['q'];
                     $btn = '<input type="submit" class="btn btn-primary btn-sm" id="booknow" name="booknow" onclick="return validateBook();" value="Book Now"/>';
                 } else {
                     // Room is fully booked
-                    $btn = '<div style="color: red; font-size:20px;"><strong>Fully Booked</strong></div>';
+                    $btn = '<div style="color: red; font-size:21px;"><strong>Fully Booked</strong></div>';
                 }
 
 
@@ -115,14 +197,16 @@ $accomodation = ' | ' . @$_GET['q'];
                             <div class="price-gd-bottom">
                                 <div class="price-list">
                                     <ul>
-                                        <h5><li><?php echo $result->accomodation_name; ?></li></h5><br>
+                                        <h5>
+                                            <li><?php echo $result->accomodation_name; ?></li>
+                                        </h5><br>
                                         <li><?php echo $result->room_description; ?></li><br>
                                         <li>Number Person : <?php echo $result->num_person; ?></li><br>
                                         <li>Remaining Rooms :<?php echo  $resNum; ?></li><br>
                                     </ul>
                                 </div>
                                 <div class="price-selet">
-                                <h3><span>₱</span><?php echo number_format($result->price); ?></h3>
+                                    <h3><span>₱</span><?php echo number_format($result->price); ?></h3>
                                     <?php echo $btn; ?>
                                 </div>
                             </div>

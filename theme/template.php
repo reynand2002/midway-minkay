@@ -33,7 +33,7 @@ if (isset($_POST['avail'])) {
   <link href="<?php echo WEB_ROOT; ?>css/easy-responsive-tabs.css" rel='stylesheet' type='text/css' />
   <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>css/flexslider.css" type="text/css" media="screen" property="" />
   <link rel="stylesheet" href="<?php echo WEB_ROOT; ?>css/jquery-ui.css" />
-  <link href="<?php echo WEB_ROOT; ?>css/mystyle.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="<?php echo WEB_ROOT; ?>css/style.css" rel="stylesheet" type="text/css" media="all" />
   <link href="<?php echo WEB_ROOT; ?>css/ekko-lightbox.css" rel="stylesheet" />
   <script type="text/javascript" src="<?php echo WEB_ROOT; ?>js/modernizr-2.6.2.min.js"></script>
   <!--fonts-->
