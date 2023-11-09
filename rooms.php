@@ -80,7 +80,7 @@ $accomodation = ' | ' . @$_GET['q'];
                                         <label>Arrival</label>
                                         <input type="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="any" data-link-format="yyyy-mm-dd" name="arrival" id="date_pickerfrom" value="<?php echo isset($_POST['arrival']) ? $_POST['arrival'] : date('m/d/Y'); ?>" class="date_pickerfrom input-sm form-control">
                                         <span class="input-group-btn">
-                                            <i class="date_pickerto fa  fa-calendar"></i>
+                                            <i class="date_pickerfrom fa fa-calendar"></i>
                                         </span>
                                     </div>
 
@@ -91,7 +91,7 @@ $accomodation = ' | ' . @$_GET['q'];
                                 <div class="col-md-10">
                                     <div class="form-group input-group">
                                         <label>Departure</label>
-                                        <input type="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="any" data-link-format="yyyy-mm-dd" name="departure" id="date_pickerto" value="<?php echo isset($_POST['departure']) ? $_POST['departure'] : date('m/d/Y'); ?>" class="date_pickerto form-control  input-sm">
+                                        <input type="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="any" data-link-format="yyyy-mm-dd" name="departure" id="date_pickerto" value="<?php echo isset($_POST['departure']) ? $_POST['departure'] : date('m/d/Y'); ?>" class="date_pickerto input-sm form-control">
                                         <span class="input-group-btn">
                                             <i class="date_pickerto fa  fa-calendar"></i>
                                         </span>

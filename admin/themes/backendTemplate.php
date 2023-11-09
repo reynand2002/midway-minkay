@@ -201,7 +201,7 @@ admin_logged_in();
 						$cur = $mydb->loadResultList();
 						foreach ($cur as $result) {
 						?>
-							<a href="<?php echo WEB_ROOT; ?>admin/mod_reservation/index.php">Reservation <?php echo  isset($result->Total) ? '<span style="color:red">(' . $result->Total . ')</span>' : ''; ?> </a>
+							<a href="<?php echo WEB_ROOT; ?>admin/mod_reservation/index.php">Reservation <?php echo  isset($result->Total) ? '<span style="color:lightgray">(' . $result->Total . ')</span>' : ''; ?> </a>
 						<?php
 						}
 						?>
