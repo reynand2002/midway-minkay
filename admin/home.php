@@ -64,7 +64,7 @@
 </div>
 <hr>
 <div class="container">
-  <h3>Feedbacks</h3>
+  <!-- <h3>Feedbacks</h3>
   <div class="panel-body">
     <table id="table" class="table table-bordered table-striped" cellspacing="0">
       <thead>
@@ -89,5 +89,5 @@
         ?>
       </tbody>
     </table>
-  </div>
+  </div> -->
 </div>

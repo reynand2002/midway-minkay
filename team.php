@@ -13,9 +13,9 @@
                     <li>
                         <img src="images/reinan-s.jpg" alt=" " class="img-responsive" />
                     </li>
-                    <li>
+                    <!-- <li>
                         <img src="images/junpyo-s.jpg" alt=" " class="img-responsive" />
-                    </li>
+                    </li> -->
                 </ul>
                 <div class="resp-tabs-container">
                     <div class="tab1">
