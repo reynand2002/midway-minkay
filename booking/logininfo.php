@@ -61,10 +61,20 @@ if (!isset($_SESSION['monbela_cart'])) {
 
     function logintab()
     {
-
     ?>
       <div class="col-md-6">
-        <form action="<?php echo  WEB_ROOT . "login.php" ?>" method="post">
+        <?php
+        // Check if there is a message in the session
+        if (isset($_SESSION['message'])) {
+          $message = $_SESSION['message'];
+
+          echo "<div class=''>$message</div>";
+
+          // Clear the session message to prevent displaying it on subsequent page loads
+          unset($_SESSION['message']);
+        }
+        ?>
+        <form action="<?php echo WEB_ROOT . "login.php" ?>" method="post" onsubmit="return validateLogin()">
           <div class="form-group has-feedback">
             <span class="glyphicon glyphicon-user form-control-feedback"></span>
             <input type="text" class="form-control" name="username" placeholder="Username">
@@ -74,21 +84,26 @@ if (!isset($_SESSION['monbela_cart'])) {
             <input type="password" class="form-control" name="pass" placeholder="Password">
           </div>
           <div class="row">
-            <!-- <div class="col-xs-8">
-              <div class="checkbox icheck">
-                <label>
-                  <input type="checkbox"> Remember Me
-                </label>
-              </div>
-            </div> -->
-            <!-- /.col -->
             <div class="col-xs-4">
               <button type="submit" name="gsubmit" class="btn btn-primary btn-block btn-flat">Sign In</button>
             </div>
-            <!-- /.col -->
           </div>
         </form>
       </div>
+
+      <script>
+        function validateLogin() {
+          var username = document.getElementsByName("username")[0].value;
+          var password = document.getElementsByName("pass")[0].value;
+
+          if (username === "" || password === "") {
+            alert("Please enter both username and password.");
+            return false;
+          }
+
+          return true;
+        }
+      </script>
       <?php
     }
 

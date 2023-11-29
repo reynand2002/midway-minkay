@@ -221,8 +221,10 @@ $accomodation = ' | ' . @$_GET['q'];
     </div>
 </div>
 <!--// rooms & rates -->
+
+<!-- FOR CUSTOMERS REVIEWS feature -->
 <!-- visitors -->
-<div class="w3l-visitors-agile">
+<!-- <div class="w3l-visitors-agile">
     <div class="container">
         <h3 class="title-w3-agileits title-black-wthree">What other visitors experienced</h3>
     </div>
@@ -330,5 +332,5 @@ $accomodation = ' | ' . @$_GET['q'];
             </div>
         </section>
     </div>
-</div>
+</div> -->
 <!-- visitors -->

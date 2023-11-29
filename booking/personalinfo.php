@@ -22,14 +22,14 @@ if (isset($_POST['submit'])) {
 ?>
 
 <?php
-	if (isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) > 0) {
-		echo '<ul class="err">';
-		foreach ($_SESSION['ERRMSG_ARR'] as $msg) {
-			echo '<li>', $msg, '</li>';
-		}
-		echo '</ul>';
-		unset($_SESSION['ERRMSG_ARR']);
+if (isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count($_SESSION['ERRMSG_ARR']) > 0) {
+	echo '<ul class="err">';
+	foreach ($_SESSION['ERRMSG_ARR'] as $msg) {
+		echo '<li>', $msg, '</li>';
 	}
+	echo '</ul>';
+	unset($_SESSION['ERRMSG_ARR']);
+}
 ?>
 
 <form class="form-horizontal" action="index.php?view=logininfo" method="post" name="personal">
@@ -61,7 +61,7 @@ if (isset($_POST['submit'])) {
 	</div>
 	<div class="form-group">
 		<div class="col-md-8">
-			<label class="col-md-4 control-label" for="city">City:</label>
+			<label class="col-md-4 control-label" for="city">City/Province:</label>
 			<div class="col-md-8">
 				<input name="city" type="text" class="form-control input-sm" id="city" required />
 			</div>
@@ -132,13 +132,27 @@ if (isset($_POST['submit'])) {
 	&nbsp; &nbsp;
 	<div class="form-group">
 		<div class="col-md-6">
-			I <input type="checkbox" name="condition" value="checkbox" />
+			I <input type="checkbox" name="condition" value="checkbox" id="agreeCheckbox" />
 			<small>Agree the <a class="toggle-modal" data-toggle="modal" data-target="#myModal">TERMS AND CONDITION</a> of this Hotel</small>
 			<br>
 			<div class="col-md-4">
 				<input name="submit" type="submit" value="Confirm" class="btn btn-primary" onclick="return personalInfo();" />
 			</div>
 		</div>
+
+		<script>
+			function personalInfo() {
+				var agreeCheckbox = document.getElementById('agreeCheckbox');
+
+				if (!agreeCheckbox.checked) {
+					alert("Please agree to the terms and conditions before submitting the form.");
+					return false; // prevent form submission
+				}
+
+				return true; // allow form submission
+			}
+		</script>
+
 		<div class="col-md-6">
 			<h4>NOTE:<br>
 				We strongly recommend that your password be a minimum of 8 characters long and should not match your username.<br><br>

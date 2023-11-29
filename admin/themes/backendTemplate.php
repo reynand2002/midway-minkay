@@ -155,24 +155,24 @@
 admin_logged_in();
 ?>
 <style type="text/css">
-  body {
-    font-family: 'Poppins', sans-serif;
-  }
+	body {
+		font-family: 'Poppins', sans-serif;
+	}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: 'Poppins', sans-serif;
-  }
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: 'Poppins', sans-serif;
+	}
 
-  p,
-  a,
-  span {
-    font-family: 'Poppins', sans-serif;
-  }
+	p,
+	a,
+	span {
+		font-family: 'Poppins', sans-serif;
+	}
 </style>
 
 <body>

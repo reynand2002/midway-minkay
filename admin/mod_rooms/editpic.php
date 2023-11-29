@@ -1,17 +1,11 @@
 <?php
-require_once("../../includes/initialize.php");
 
-$room = new Room();
-$cur = $room->single_room($_POST['room_id']);
-
+$rm = new Room();
+$result = $rm->single_room($_GET['id']);
 ?>
 
 <div class="modal-dialog" style="width:50%">
 	<div class="modal-content">
-		<!-- <div class="modal-header">
-		<button  class="close" id="btnclose" data-dismiss="modal" type=
-		"button">x</button>
-	</div> -->
 		<div class="modal-body">
 			<form class="form-horizontal well span6" action="controller.php?action=editimage" enctype="multipart/form-data" method="POST">
 
@@ -21,8 +15,8 @@ $cur = $room->single_room($_POST['room_id']);
 					</caption>
 					<tr>
 						<td width="80">
-							<input name="id" type="hidden" value="<?php echo $cur->room_id; ?>">
-							<img src="<?php echo $cur->room_image; ?>" width="550" height="300" />
+							<input name="id" type="hidden" value="<?php echo $result->room_id; ?>">
+							<img src="<?php echo $result->room_image; ?>" width="450" height="250" />
 						</td>
 					</tr>
 
@@ -32,7 +26,7 @@ $cur = $room->single_room($_POST['room_id']);
 						</td>
 					</tr>
 					<tr>
-						<td width="80"><input type="button" value="x Close" class="btn btn-default" onclick="window.location.href='index.php'">
+						<td width="80"><input type="button" value="Close" class="btn btn-default" onclick="window.location.href='index.php'">
 							<button class="btn btn-primary" name="save" type="submit">Save</button>
 
 						</td>

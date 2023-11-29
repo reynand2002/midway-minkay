@@ -1,6 +1,5 @@
 <?php
 
-// $_SESSION['id']=$_GET['id'];
 $rm = new Room();
 $result = $rm->single_room($_GET['id']);
 ?>
@@ -8,20 +7,6 @@ $result = $rm->single_room($_GET['id']);
 
   <fieldset>
     <legend>Edit Room</legend>
-
-    <!--           <div class="form-group">
-            <div class="col-md-8">
-              <label class="col-md-4 control-label" for=
-              "ROOMNUM">Room #:</label>
-
-              <div class="col-md-8">
-                <input name="ROOMID" type="hidden" value="<?php echo $result->ROOMID; ?>">
-                 <input class="form-control input-sm" id="ROOMNUM" name="ROOMNUM" placeholder=
-                    "Room #" type="text" value="<?php echo $result->ROOMNUM; ?>">
-              </div>
-            </div>
-          </div> -->
-
     <div class="form-group">
       <div class="col-md-8">
         <label class="col-md-4 control-label" for="room">Name:</label>
@@ -72,7 +57,7 @@ $result = $rm->single_room($_GET['id']);
 
     <div class="form-group">
       <div class="col-md-8">
-        <label class="col-md-4 control-label" for="num_person">Number of Person:</label>
+        <label class="col-md-4 control-label" for="num_person">Number of Person/s:</label>
 
         <div class="col-md-8">
           <input class="form-control input-sm" id="num_person" name="num_person" placeholder="Number of Person" type="text" value="<?php echo $result->num_person; ?>" onkeyup="javascript:checkNumber(this);">

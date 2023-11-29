@@ -170,18 +170,18 @@ if (isset($_POST['btnsubmitbooking'])) {
         <div class="container">
           <div class="col-md-8 col-sm-4">
             <div align="left" class="col-md-12">
-              <p><b>NOTE: </b> Please make a <u>10% downpayment</u> of your <strong>total billing</strong> amount to the Gcash number provided. Then <u>copy</u> and <u>paste</u> the <b>Reference Number</b> of transaction in the box.</p>
+              <p><b>NOTE: </b> Please make a <u>20% downpayment</u> of your <strong>total billing</strong> amount to the Gcash number provided. Then <u>copy</u> and <u>paste</u> the <b>Reference Number</b> of transaction in the box.</p>
             </div>
             <div align="left" class="col-md-12">
-              <a href="<?php echo WEB_ROOT;  ?>images_copy/payment_logo.png"><img class="img-rounded" src="<?php echo WEB_ROOT;  ?>images_copy/payment_logo.png" style="height: 100px;"></a>
+              <a href="<?php echo WEB_ROOT;  ?>images_copy/payment_logo.png" class="swipebox"><img class="img-rounded" src="<?php echo WEB_ROOT;  ?>images_copy/payment_logo.png" style="height: 100px;"></a>
             </div>
             <br>
             <div class="row">
               <?php
               if (isset($_SESSION['pay']) && is_numeric($_SESSION['pay'])) {
                 $totalAmount = floatval($_SESSION['pay']);
-                $tenPercent = $totalAmount * 0.10;
-                echo "<h4> 10% of your total amount is: &#8369 " . number_format($tenPercent, 2) . "</h4>";
+                $total = $totalAmount * 0.20;
+                echo "<h4> 20% of your total amount is: &#8369 " . number_format($total, 2) . "</h4>";
               }
               ?>
             </div>

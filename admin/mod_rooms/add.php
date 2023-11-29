@@ -3,9 +3,6 @@
   <fieldset>
     <legend>New Room</legend>
 
-
-
-
     <div class="form-group">
       <div class="col-md-8">
         <label class="col-md-4 control-label" for="room">Name:</label>
@@ -23,7 +20,6 @@
 
         <div class="col-md-8">
           <select class="form-control input-sm" name="accomodation_id" id="accomodation_id">
-            <option value="None">None</option>
             <?php
             $rm = new Accomodation();
             $cur = $rm->listOfaccomodation();
@@ -39,18 +35,14 @@
 
     <div class="form-group">
       <div class="col-md-8">
-        <label class="col-md-4 control-label" for="accomodation_description">Description:</label>
+        <label class="col-md-4 control-label" for="room_description">Room Description:</label>
 
         <div class="col-md-8">
           <input name="" type="hidden" value="">
-          <input class="form-control input-sm" id="accomodation_description" name="accomodation_description" placeholder="Description" type="text" value="">
+          <input class="form-control input-sm" id="room_description" name="room_description" placeholder="Description" type="text" value="">
         </div>
       </div>
     </div>
-
-
-
-
 
     <div class="form-group">
       <div class="col-md-8">
@@ -61,7 +53,6 @@
         </div>
       </div>
     </div>
-
 
     <div class="form-group">
       <div class="col-md-8">
@@ -75,7 +66,7 @@
 
     <div class="form-group">
       <div class="col-md-8">
-        <label class="col-md-4 control-label" for="room_num">No. of Rooms:</label>
+        <label class="col-md-4 control-label" for="room_num">Numbers of Rooms:</label>
 
         <div class="col-md-8">
           <input name="" type="hidden" value="">

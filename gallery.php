@@ -120,7 +120,8 @@
                     <p><i class="fa fa-picture-o" aria-hidden="true"></i></p>
                 </div>
             </a>
-        </div><div class="col-md-3 gallery-grid gallery1">
+        </div>
+        <div class="col-md-3 gallery-grid gallery1">
             <a href="<?php echo WEB_ROOT; ?>images_copy/16.jpg" class="swipebox"><img src="<?php echo WEB_ROOT; ?>images_copy/16.jpg" class="img-responsive" alt="/">
                 <div class="textbox">
                     <h4>MIDWAY MINKAY</h4>

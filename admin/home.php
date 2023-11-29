@@ -1,5 +1,85 @@
 <div class="container">
   <h3>Administrator Panel: Welcome <?php echo $_SESSION['admin_name']; ?></h3>
+
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <?php
+  $mydb->setQuery("SELECT MONTH(trans_date) as month, COUNT(*) as reservation_count
+                 FROM reservation
+                 GROUP BY MONTH(trans_date)");
+
+  $cur = $mydb->loadResultList();
+
+  $data = array();
+  foreach ($cur as $result) {
+    $month = $result->month;
+    $reservationCount = $result->reservation_count;
+    $data[] = array('month' => $month, 'reservationCount' => (int)$reservationCount);
+  }
+  ?>
+
+  <script>
+    $(document).ready(function() {
+      var chartData = <?php echo json_encode($data); ?>;
+
+      var uniqueMonths = Array.from(new Set(chartData.map(item => item.month)));
+
+      Highcharts.chart('container', {
+        chart: {
+          type: 'bar'
+        },
+        title: {
+          text: 'Monthly Reservation Statistics',
+          style: {
+            fontSize: '24px' // Adjust the font size as needed
+          }
+        },
+        xAxis: {
+          categories: uniqueMonths.map(month => {
+            return monthName(month);
+          }),
+          labels: {
+            style: {
+              fontSize: '16px' // Adjust the font size as needed
+            }
+          }
+        },
+        yAxis: {
+          title: {
+            text: 'Number of Reservations',
+            style: {
+              fontSize: '24px' // Adjust the font size as needed
+            }
+          },
+          labels: {
+            style: {
+              fontSize: '16px' // Adjust the font size as needed
+            }
+          }
+        },
+        series: [{
+          name: 'Reservations',
+          data: uniqueMonths.map(month => {
+            var dataForMonth = chartData.find(item => item.month === month);
+            return dataForMonth ? dataForMonth.reservationCount : 0;
+          })
+        }]
+      });
+    });
+
+    function monthName(monthNumber) {
+      var monthNames = [
+        'January', 'February', 'March', 'April', 'May', 'June',
+        'July', 'August', 'September', 'October', 'November', 'December'
+      ];
+      return monthNames[monthNumber - 1];
+    }
+  </script>
+
+  <!-- Container for the chart -->
+  <div id="container" style="width: 100%; height: 400px;"></div>
+
   <div class="panel-group" id="accordion">
     <div class="panel panel-default">
       <div class="panel-heading">

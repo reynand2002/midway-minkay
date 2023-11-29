@@ -8,7 +8,6 @@ if (isset($_GET['id'])) {
 if (isset($_POST['clear'])) {
   unset($_SESSION['pay']);
   unset($_SESSION['monbela_cart']);
-  message("The cart is empty.", "success");
   redirect(WEB_ROOT . "booking/");
 }
 

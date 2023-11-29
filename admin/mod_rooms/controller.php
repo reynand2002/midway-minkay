@@ -39,12 +39,6 @@ function doInsert(){
 
 			$location="rooms/".$_FILES["image"]["name"];
 
-			// if(file_exists($location)){
-			
-		 //    	message("There is such an image. Please select another one!", "error");
-			// 	redirect("index.php?view=add");	
-			// }
-			// else{
 			move_uploaded_file($_FILES["image"]["tmp_name"],"rooms/".$_FILES["image"]["name"]);
 			
 			if ($_POST['room'] == "" OR $_POST['room_num'] == "" OR $_POST['price'] == "") {
@@ -55,13 +49,6 @@ function doInsert(){
 			}else{
 				$room = new Room();
 
-					// $_POST['ROOM'];
-				// 	// $_POST['ACCOMID']
-				// 	// $_POST['ROOMNUM'];
-				// 	// $_POST['ROOMDESC'];
-				// 	// $_POST['NUMPERSON'];
-				// 	// $_POST['PRICE'];
- 
 
 				$res = $room->find_all_room($_POST['room']);
 				
