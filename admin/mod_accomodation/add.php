@@ -1,26 +1,25 @@
-<form class="form-horizontal well span6" action="controller.php?action=add" method="POST">
+<form class="form-horizontal well span6" action="controller.php?action=add" method="POST" onsubmit="return validateForm()">
 
   <fieldset>
-    <legend>New Accomodation</legend>
-
+    <legend>New Accommodation</legend>
 
     <div class="form-group">
       <div class="col-md-8">
-        <label class="col-md-4 control-label" for="accomodation_name">Name:</label>
+        <label class="col-md-4 control-label" for="accommodation_name">Name:</label>
 
         <div class="col-md-8">
           <input name="deptid" type="hidden" value="">
-          <input class="form-control input-sm" id="accomodation_name" name="accomodation_name" placeholder="Accomodation" type="text" value="">
+          <input class="form-control input-sm" id="accommodation_name" name="accommodation_name" placeholder="Accommodation" type="text" value="">
         </div>
       </div>
     </div>
 
     <div class="form-group">
       <div class="col-md-8">
-        <label class="col-md-4 control-label" for="accomodation_description">Description:</label>
+        <label class="col-md-4 control-label" for="accommodation_description">Description:</label>
 
         <div class="col-md-8">
-          <input class="form-control input-sm" id="accomodation_description" name="accomodation_description" placeholder="Description" type="text" value="">
+          <input class="form-control input-sm" id="accommodation_description" name="accommodation_description" placeholder="Description" type="text" value="">
         </div>
       </div>
     </div>
@@ -35,11 +34,22 @@
       </div>
     </div>
 
-
   </fieldset>
-
-
 </form>
+
+<script>
+  function validateForm() {
+    var name = document.getElementById("accommodation_name").value;
+    var description = document.getElementById("accommodation_description").value;
+
+    if (name === "" || description === "") {
+      alert("Please fill out all fields.");
+      return false;
+    }
+
+    return true;
+  }
+</script>
 
 
 </div><!--End of container-->
