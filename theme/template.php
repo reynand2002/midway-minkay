@@ -87,7 +87,7 @@ if (isset($_SESSION['activity'])) {
             <ul class="nav navbar-nav menu__list">
               <li class="menu__item"><a href="<?php echo WEB_ROOT; ?>index.php" class="menu__link">Home</a></li>
               <li class="menu__item"><a href="<?php echo WEB_ROOT; ?>index.php?p=about" class="menu__link">About</a></li>
-              <li class="menu__item"><a href="<?php echo WEB_ROOT; ?>index.php?p=team" class="menu__link">Team</a></li>
+              <!-- <li class="menu__item"><a href="<!?php echo WEB_ROOT; ?>index.php?p=team" class="menu__link">Team</a></li> -->
               <li class="menu__item"><a href="<?php echo WEB_ROOT; ?>index.php?p=gallery" class="menu__link">Gallery</a></li>
               <li class="menu__item"><a href="<?php echo WEB_ROOT; ?>index.php?p=rooms" class="menu__link">Rooms</a></li>
               <li class="menu__item"><a href="<?php echo WEB_ROOT; ?>index.php?p=contact" class="menu__link">Contact Us</a></li>
