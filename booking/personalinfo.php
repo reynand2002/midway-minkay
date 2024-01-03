@@ -133,7 +133,7 @@ if (isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count
 	<div class="form-group">
 		<div class="col-md-6">
 			I <input type="checkbox" name="condition" value="checkbox" id="agreeCheckbox" />
-			<small>Agree the <a class="toggle-modal" data-toggle="modal" data-target="#myModal">TERMS AND CONDITION</a> of this Hotel</small>
+			<small>Agree the <a class="toggle-modal" data-toggle="modal" data-target="#myModal" style="cursor: pointer;">TERMS AND CONDITION</a> of this Hotel</small>
 			<br>
 			<div class="col-md-4">
 				<input name="submit" type="submit" value="Confirm" class="btn btn-primary" onclick="return personalInfo();" />
