@@ -14,10 +14,6 @@ $res = $guest->single_guest($_SESSION['guest_id']);
     My Account
     <small>Account Details</small>
   </h1>
-  <!--    <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Mailbox</li>
-      </ol> -->
 </section>
 
 <form class="form-horizontal" action="<?php echo WEB_ROOT; ?>guest/update.php" method="post" onsubmit="return personalInfo()" name="personal">

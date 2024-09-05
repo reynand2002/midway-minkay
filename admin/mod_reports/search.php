@@ -58,8 +58,6 @@
 						<tbody>
 							<?php
 							if (isset($_POST['submit'])) {
-								// $_SESSION['start']=$_POST['start'];
-								// $_SESSION['end']=$_POST['end'];	
 								$sql = "SELECT  `firstname`, `lastname`,`arrival`, `departure`,`room`,`room_description` ,`price` ,`r_price`,`status`
 	 FROM `guest` G,`reservation` R, `room` RR 
 	 WHERE  G.`guest_id`=R.`guest_id` AND R.`room_id`=RR.`room_id` AND DATE(`arrival`) >=  '" . $_POST['start'] . "'

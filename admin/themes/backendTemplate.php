@@ -27,6 +27,7 @@
 	<script type="text/javascript" language="javascript" src="<?php echo WEB_ROOT; ?>admin/js/bootstrap-modal.js"></script>
 	<script type="text/javascript" src="<?php echo WEB_ROOT; ?>admin/js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
 	<script type="text/javascript" src="<?php echo WEB_ROOT; ?>admin/js/locales/bootstrap-datetimepicker.uk.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="<?php echo WEB_ROOT; ?>admin/assets/sheetjs-github/dist/xlsx.full.min.js"></script>
 </head>
 <script type="text/javascript">
 	//execute if all html elemen has been completely loaded
@@ -211,7 +212,7 @@ admin_logged_in();
 					<?php if ($_SESSION['admin_role'] == "Administrator") { ?>
 						<li class="<?php echo (currentpage() == 'mod_users') ? "active" : false; ?>"><a href="<?php echo WEB_ROOT; ?>admin/mod_users/index.php">Users</a></li>
 					<?php } ?>
-					<li class="<?php echo (currentpage() == 'logout.php') ? "active" : false; ?>"><a class="toggle-modal" href="#logout">Logout</a></li>
+					<li class="<?php echo (currentpage() == 'logout.php') ? "active" : false; ?>"><a href="javascript:void(0);" onclick="confirmLogout()">Logout</a></li>
 				</ul>
 
 			</div><!-- /.nav-collapse -->
@@ -229,6 +230,18 @@ admin_logged_in();
 		<?php require_once $content; ?>
 		<!--/row-->
 
+		<!-- script for logout -->
+		<script>
+			function confirmLogout() {
+				var userConfirmed = confirm("Are you sure you want to log out?");
+
+				if (userConfirmed) {
+					window.location.href = '<?php echo WEB_ROOT; ?>admin/logout.php?confirmed=1';
+				} else {
+					alert('Logout canceled.');
+				}
+			}
+		</script>
 		<hr>
 		<footer>
 			<p>&copy; Midway Minkay Restobar and Catering Services </p>

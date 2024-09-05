@@ -41,7 +41,6 @@ if (!isset($_SESSION['monbela_cart'])) {
            Sir/Madam <?php echo $name.' '.$last;?> <br/>
            <?php echo $address;?><br/>
            <?php echo $phone;?> <br/>
-           <!-- <?php echo $email;?><br/><br/> -->
            Dear Sir/Madam. <?php echo $last;?>,<br/><br/>
            Greetings from monbela Beach Resorts!<br/><br/>
            Please check the details of your reservation:<br/><br/>
@@ -53,7 +52,6 @@ if (!isset($_SESSION['monbela_cart'])) {
         <table class="table table-hover">
               <thead>
                 <tr  bgcolor="#999999">
-                  <!-- <th width="10">#</th> -->
                   <th align="center" width="120">Room Type</th>
                   <th align="center" width="120">Check In</th>
                   <th align="center" width="120">Check Out</th>

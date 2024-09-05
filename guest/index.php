@@ -34,8 +34,7 @@ switch ($view) {
       $content='accomodation.php';
     break;  
 
-  case 'largeview' :
-      // $title="View";  
+  case 'largeview' : 
     $content ='largeimg.php';
     break;
   default :

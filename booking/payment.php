@@ -90,8 +90,17 @@ if (isset($_POST['btnsubmitbooking'])) {
         <li class="active">Booking Details</li>
       </ol>
     </div>
-
-    <form action="index.php?view=payment" method="post" name="personal">
+    <script>
+      function validateForm() {
+        var referenceNumber = document.forms["personal"]["confirmation_code"].value;
+        if (referenceNumber == "") {
+          alert("Please fill in the Reference Number field.");
+          return false;
+        }
+        return true;
+      }
+    </script>
+   <form action="index.php?view=payment" method="post" name="personal" onsubmit="return validateForm()">
       <div class="col-md-12">
         <div class="row">
           <div class="col-md-8 col-sm-4">

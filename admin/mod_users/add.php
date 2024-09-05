@@ -44,7 +44,6 @@
           <select class="form-control input-sm" name="role" id="role">
             <option value="Administrator">Administrator</option>
             <option value="Guest In-charge">Guest In-charge</option>
-            <!-- <option value="Encoder">Encoder</option> -->
           </select>
         </div>
       </div>

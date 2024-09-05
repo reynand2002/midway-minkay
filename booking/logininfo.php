@@ -1,12 +1,3 @@
-<?php
-
-if (!isset($_SESSION['monbela_cart'])) {
-  # code...
-  redirect(WEB_ROOT . 'index.php');
-}
-
-?>
-<!-- title  -->
 <div class="about-wthree">
   <div class="container">
     <div id="accom-title">
@@ -76,19 +67,36 @@ if (!isset($_SESSION['monbela_cart'])) {
         ?>
         <form action="<?php echo WEB_ROOT . "login.php" ?>" method="post" onsubmit="return validateLogin()">
           <div class="form-group has-feedback">
-            <span class="glyphicon glyphicon-user form-control-feedback"></span>
-            <input type="text" class="form-control" name="username" placeholder="Username">
+              <span class="glyphicon glyphicon-user form-control-feedback"></span>
+              <input type="text" class="form-control" name="username" placeholder="Username">
           </div>
           <div class="form-group has-feedback">
-            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            <input type="password" class="form-control" name="pass" placeholder="Password">
+              <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+              <input type="password" class="form-control" name="pass" id="passwordField" placeholder="Password">
+          </div>
+          <div class="checkbox">
+              <label>
+                  <input name="remember" type="checkbox" id="showPasswordCheckbox" onchange="togglePasswordMe()"> Show Password
+              </label>
           </div>
           <div class="row">
-            <div class="col-xs-4">
-              <button type="submit" name="gsubmit" class="btn btn-primary btn-block btn-flat">Sign In</button>
-            </div>
+              <div class="col-xs-4">
+                  <button type="submit" name="gsubmit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+              </div>
           </div>
-        </form>
+      </form>
+      <script>
+          function togglePasswordMe() {
+              var passwordField = document.getElementById("passwordField");
+              var showPasswordCheckbox = document.getElementById("showPasswordCheckbox");
+
+              if (showPasswordCheckbox.checked) {
+                  passwordField.type = "text";
+              } else {
+                  passwordField.type = "password";
+              }
+          }
+      </script>
       </div>
 
       <script>

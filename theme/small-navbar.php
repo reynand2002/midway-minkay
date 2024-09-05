@@ -9,11 +9,25 @@
 						<i class="fa fa-shopping-cart" style="font-size:35px;"><?php echo  isset($cart) ? $cart : ''; ?> </i>
 					</a>
 				</li>
-				<!-- <li>
-					<a data-toggle="tooltip" data-placement="bottom" title="Log In" href="<?php echo WEB_ROOT; ?>booking/index.php?view=logininfo">
-						<i class="fa fa-user" style="font-size:35px;"></i>
+				<!-- if the guest user is naka log in this icon will be hide -->
+				<?php
+				$userLoggedIn = isset($_SESSION['guest_id']) && $_SESSION['guest_id'];
+
+					if (!$userLoggedIn) {
+					?>
+						<li>
+							<a data-toggle="tooltip" data-placement="bottom" title="Log In as Guest" href="<?php echo WEB_ROOT; ?>booking/index.php?view=logininfo">
+								<i class="fa fa-user" style="font-size:35px;"></i>
+							</a>
+						</li>
+					<?php
+					}
+				?>
+				<li>
+					<a data-toggle="tooltip" data-placement="bottom" title="Log In as Admin" href="<?php echo WEB_ROOT; ?>admin/index.php">
+						<i class="fa fa-user-secret" style="font-size:35px;"></i>
 					</a>
-				</li> -->
+				</li>
 				<?php if (isset($_SESSION['guest_id'])) {
 					# code...
 				?>
@@ -58,7 +72,6 @@
 
 									</ul>
 								</li>
-								<!-- <li class="footer"><a href="#">See All Messages</a></li> -->
 							<?php } ?>
 						</ul>
 					</li>
@@ -83,11 +96,9 @@
 								</div>
 								<!-- /.widget-user-image -->
 								<h3 class="widget-user-username"><?php echo $_SESSION['name'] . ' ' . $_SESSION['last']; ?> </h3>
-								<!-- <h5 class="widget-user-desc">Lead Developer</h5> -->
 							</li>
 							<!-- <li class="box-footer no-padding">  -->
 							<li><a style="color:#000;text-align:left;border-bottom:1px solid #fff;" href="<?php echo WEB_ROOT;  ?>guest/profile.php" data-toggle="lightbox">Account<!--  <span class="pull-right badge bg-blue">31</span> --></a></li>
-							<!-- <li><a style="color:#000;text-align:left;border-bottom:1px solid #fff;" href="#">Tasks <span class="pull-right badge bg-aqua">5</span></a></li> -->
 							<li><a style="color:#000;text-align:left;border-bottom:1px solid #fff;" href="<?php echo WEB_ROOT;  ?>guest/bookinglist.php" data-toggle="lightbox">Bookings <!-- <span class="pull-right badge bg-green">12</span> --></a></li>
 							<li><a style="color:#000;text-align:left;border-bottom:1px solid #fff;" href="<?php echo WEB_ROOT . 'logout.php';  ?>">Logout </a></li>
 

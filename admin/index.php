@@ -5,8 +5,6 @@ require_once("../includes/initialize.php");
  	return true;
  }
 
-
- include './modal.php'; 
 $content='home.php';
 
 include 'themes/backendTemplate.php';

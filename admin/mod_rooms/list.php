@@ -3,6 +3,11 @@
 	check_message();
 
 	?>
+	<div>
+	<!-- Add download buttons for PDF and Excel -->
+		<button id="downloadPDF">Print</button>
+		<button id="downloadExcel">Download Excel</button>
+	</div>
 	<div class="panel-body">
 		<h3 align="left">List of Rooms</h3>
 		<?php
@@ -76,3 +81,47 @@
 <div class="modal fade" id="myModal" tabindex="-1">
 
 </div>
+
+<script>
+    document.getElementById('downloadPDF').addEventListener('click', function () {
+        printTable();
+    });
+
+    function printTable() {
+        var table = document.getElementById('example').outerHTML;
+        
+        document.body.innerHTML = '<html><head><title>Midway Minkay - List of Rooms</title></head><body>' + table + '</body></html>';
+        window.print();
+
+        // Restore the original content after printing
+        document.location.reload(true);
+    }
+
+    document.getElementById('downloadExcel').addEventListener('click', function () {
+
+        var data = [];
+        var table = document.getElementById('example');
+        var rows = table.getElementsByTagName('tr');
+        for (var i = 0; i < rows.length; i++) {
+            var rowData = [];
+            var cells = rows[i].getElementsByTagName('td');
+            for (var j = 0; j < cells.length; j++) {
+                rowData.push(cells[j].innerText);
+            }
+            data.push(rowData);
+        }
+
+        var ws = XLSX.utils.aoa_to_sheet(data);
+
+        var wb = XLSX.utils.book_new();
+
+        var currentDate = new Date();
+        var dateString = currentDate.toISOString().split('T')[0]; // Format: YYYY-MM-DD
+
+        var sheetName = 'Room Table - ' + dateString;
+
+        XLSX.utils.book_append_sheet(wb, ws, sheetName);
+
+        XLSX.writeFile(wb, 'Midway Minkay - Room List - ' + dateString + '.xlsx');
+    });
+</script>

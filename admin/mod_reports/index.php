@@ -13,5 +13,5 @@ switch ($view) {
 	default :
 		$content    = 'list.php';		
 }
-  include '../modal.php';
+//   include '../modal.php';
 require_once '../themes/backendTemplate.php';

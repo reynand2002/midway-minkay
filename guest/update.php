@@ -1,6 +1,5 @@
  <?php
 	require_once("../includes/initialize.php");
-	//echo date_format(date_create($_POST['dbirth']), 'Y-m-d');
 
 	if (isset($_POST['submit'])) {
 		$guest = new Guest();
@@ -12,8 +11,6 @@
 		$guest->birthdate           = date_format(date_create($_POST['dbirth']), 'Y-m-d');
 		$guest->phone          = $_POST['phone'];
 		$guest->nationality    = $_POST['nationality'];
-		// $guest->G_UNAME          = $_POST['username'];    
-		// $guest->G_PASS           = sha1($_POST['pass']);    
 		$guest->zip_code              = $_POST['zip'];
 		$guest->update($_SESSION['guest_id']);
 

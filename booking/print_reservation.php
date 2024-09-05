@@ -9,18 +9,13 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
  <link rel="stylesheet" type="text/css" href="<?php echo WEB_ROOT; ?>style.css">  
 <link rel="stylesheet" type="text/css" href="<?php echo WEB_ROOT; ?>css/responsive.css">    
-
 <link rel="stylesheet" type="text/css" href="<?php echo WEB_ROOT; ?>css/bootstrap.css">  
-
 <link rel="stylesheet" type="text/css" href="<?php echo WEB_ROOT; ?>fonts/css/font-awesome.min.css"> 
 
 
 <!-- DataTables CSS -->
-<!-- <link href="<?php echo WEB_ROOT; ?>css/dataTables.bootstrap.css" rel="stylesheet"> -->
- 
  <link href="<?php echo WEB_ROOT; ?>css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
  <link href="<?php echo WEB_ROOT; ?>css/datepicker.css" rel="stylesheet" media="screen">
-
  <link href="<?php echo WEB_ROOT; ?>css/galery.css" rel="stylesheet" media="screen">
 </head>
 <body onload="window.print();">
@@ -40,19 +35,13 @@ if (isset($_POST['profileCheck'])) {
    unset($_SESSION['monbela_cart']);
 }
 
-/*$guestid =$_GET['guestid'];
-$guest = new Guest();
-$result=$guest->single_guest($guestid);*/
 
   $name = $_SESSION['name']; 
   $last = $_SESSION['last'];
-  // $country =$_SESSION['country'];
   $city = $_SESSION['city'] ;
   $address = $_SESSION['address'];
   $zip =  $_SESSION['zip'] ;
   $phone = $_SESSION['phone'];
-  // $email = $_SESSION['email'];
-  // $password =$_SESSION['pass'];
   $stat = $_SESSION['pending'];
 
 ?>
@@ -68,26 +57,10 @@ $result=$guest->single_guest($guestid);*/
 
     <form action="index.php?view=payment" method="post"  name="" >
          
-            
-           <p>
-            <? print(Date("l F d, Y")); ?>
-            <br/><br/>
-           Sir/Madam <?php echo $name.' '.$last;?> <br/>
-           <?php echo $address;?><br/>
-           <?php echo $phone;?> <br/>
-           <!-- <?php echo $email;?><br/><br/> -->
-           Dear Sir/Madam. <?php echo $last;?>,<br/><br/>
-           Greetings from monbela Beach Resorts!<br/><br/>
-           Please check the details of your reservation:<br/><br/>
-           <strong>GUEST NAME(S):</strong> <?php echo $name.' '.$last;?>
-
-
-          </p>
 
         <table class="table table-hover" style="font-size:11px">
                   <thead>
               <tr  bgcolor="#999999">
-              <!-- <th width="10">#</th> -->
               <th align="center" width="120">Room Type</th>
                <th align="center" width="120">Check In</th>
                 <th align="center" width="120">Check Out</th>

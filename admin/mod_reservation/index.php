@@ -3,7 +3,6 @@ require_once("../../includes/initialize.php");
  if (!isset($_SESSION['admin_id'])){
  	redirect(WEB_ROOT ."admin/login.php");
  }
-//checkAdmin();
 $view = (isset($_GET['view']) && $_GET['view'] != '') ? $_GET['view'] : '';
 $title ="Reservation";
 switch ($view) {
@@ -25,5 +24,5 @@ switch ($view) {
 	default :
 		$content    = 'list.php';		
 }
-  include '../modal.php';
+//   include '../modal.php';
 require_once '../themes/backendTemplate.php';

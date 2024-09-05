@@ -22,8 +22,6 @@ require_once("../includes/initialize.php");
   <link rel="stylesheet" type="text/css" href="<?php echo WEB_ROOT; ?>css/custom-navbar.min.css">
 
   <!-- DataTables CSS -->
-  <!-- <link href="<?php echo WEB_ROOT; ?>css/dataTables.bootstrap.css" rel="stylesheet"> -->
-
   <link href="<?php echo WEB_ROOT; ?>css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
   <link href="<?php echo WEB_ROOT; ?>css/datepicker.css" rel="stylesheet" media="screen">
 

@@ -3,9 +3,6 @@ require_once("../../includes/initialize.php");
 $action = (isset($_GET['action']) && $_GET['action'] != '') ? $_GET['action'] : '';
 
 switch ($action) {
-	//case 'modify':
-	//	dbMODIFY();
-	//	break;
 
 	case 'delete':
 		dbDELETE();

@@ -45,13 +45,13 @@ if (isset($_POST['booknowA'])) {
 
 
 
-    $query = "SELECT * FROM `room` r ,`accomodation` a WHERE r.`accomodation_id`=a.`accomodation_id`   AND `num_person` = " . $_POST['person'];
-} elseif (isset($_GET['q'])) {
+        $query = "SELECT * FROM `room` r ,`accomodation` a WHERE r.`accomodation_id`=a.`accomodation_id`   AND `num_person` = " . $_POST['person'];
+    } elseif (isset($_GET['q'])) {
 
-    $query = "SELECT * FROM `room` r ,`accomodation` a WHERE r.`accomodation_id`=a.`accomodation_id` AND `room`='" . $_GET['q'] . "'";
-} else {
-    $query = "SELECT * FROM `room` r ,`accomodation` a WHERE r.`accomodation_id`=a.`accomodation_id`";
-}
+        $query = "SELECT * FROM `room` r ,`accomodation` a WHERE r.`accomodation_id`=a.`accomodation_id` AND `room`='" . $_GET['q'] . "'";
+    } else {
+        $query = "SELECT * FROM `room` r ,`accomodation` a WHERE r.`accomodation_id`=a.`accomodation_id`";
+    }
 
 $accomodation = ' | ' . @$_GET['q'];
 ?>
@@ -78,7 +78,7 @@ $accomodation = ' | ' . @$_GET['q'];
 
                                     <div class="form-group input-group">
                                         <label>Arrival</label>
-                                        <input type="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="any" data-link-format="yyyy-mm-dd" name="arrival" id="date_pickerfrom" value="<?php echo isset($_POST['arrival']) ? $_POST['arrival'] : date('m/d/Y'); ?>" class="date_pickerfrom input-sm form-control">
+                                        <input type="date" data-date="" data-date-format="mm-dd-yyyy" data-link-field="any" data-link-format="mm-dd-yyyy" name="arrival" id="date_pickerfrom" value="<?php echo isset($_POST['arrival']) ? date('Y-m-d', strtotime($_POST['arrival'])) : date('Y-m-d'); ?>" class="date_pickerfrom input-sm form-control">
                                         <span class="input-group-btn">
                                             <i class="date_pickerfrom fa fa-calendar"></i>
                                         </span>
@@ -91,7 +91,7 @@ $accomodation = ' | ' . @$_GET['q'];
                                 <div class="col-md-10">
                                     <div class="form-group input-group">
                                         <label>Departure</label>
-                                        <input type="date" data-date="" data-date-format="yyyy-mm-dd" data-link-field="any" data-link-format="yyyy-mm-dd" name="departure" id="date_pickerto" value="<?php echo isset($_POST['departure']) ? $_POST['departure'] : date('m/d/Y'); ?>" class="date_pickerto input-sm form-control">
+                                        <input type="date" data-date="" data-date-format="mm-dd-yyyy" data-link-field="any" data-link-format="mm-dd-yyyy" name="departure" id="date_pickerto" value="<?php echo isset($_POST['departure']) ? date('Y-m-d', strtotime($_POST['departure'])) : date('Y-m-d'); ?>" class="date_pickerto input-sm form-control">
                                         <span class="input-group-btn">
                                             <i class="date_pickerto fa  fa-calendar"></i>
                                         </span>
@@ -143,48 +143,67 @@ $accomodation = ' | ' . @$_GET['q'];
         <!-- check availability -->
 
         <div class="priceing-table-main">
-            <?php
-            $arrival = $_SESSION['arrival'];
-            $departure = $_SESSION['departure'];
 
-            $mydb->setQuery($query);
-            $cur = $mydb->loadResultList();
-            foreach ($cur as $result) {
-                // filtering the rooms
-                // ======================================================================================================
-                $mydb->setQuery("SELECT * FROM `reservation`     WHERE status<>'Pending' AND ((
-            '$arrival' >= DATE_FORMAT(`arrival`,'%Y-%m-%d')
-            AND  '$arrival' <= DATE_FORMAT(`departure`,'%Y-%m-%d')
-            )
-            OR (
-            '$departure' >= DATE_FORMAT(`arrival`,'%Y-%m-%d')
-            AND  '$departure' <= DATE_FORMAT(`departure`,'%Y-%m-%d')
-            )
-            OR (
-            DATE_FORMAT(`arrival`,'%Y-%m-%d') >=  '$arrival'
-            AND DATE_FORMAT(`arrival`,'%Y-%m-%d') <=  '$departure'
-            )
-            )
-            AND room_id =" . $result->room_id);
+        <?php
+        $arrival = $_SESSION['arrival'];
+        $departure = $_SESSION['departure'];
 
-                $curs = $mydb->loadResultList();
-                $resNum = $result->room_num;
-
-                $stats = $mydb->executeQuery();
-                $rows = $mydb->fetch_array($stats);
-                $status = isset($rows['status']) ? $rows['status'] : '';
-
-                if ($resNum > 0) {
-                    // Room is available for booking
-                    $btn = '<input type="submit" class="btn btn-primary btn-sm" id="booknow" name="booknow" onclick="return validateBook();" value="Book Now"/>';
-                } else {
-                    // Room is fully booked
-                    $btn = '<div style="color: red; font-size:21px;"><strong>Fully Booked</strong></div>';
-                }
+        $mydb->setQuery($query);
+        $cur = $mydb->loadResultList();
+        foreach ($cur as $result) {
+            // filtering the rooms
+            // ======================================================================================================
+            $mydb->setQuery("SELECT * FROM `reservation` WHERE (
+                (
+                    '$arrival' >= DATE_FORMAT(`arrival`, '%Y-%m-%d') AND '$arrival' <= DATE_FORMAT(`departure`, '%Y-%m-%d')
+                ) OR (
+                    '$departure' >= DATE_FORMAT(`arrival`, '%Y-%m-%d') AND '$departure' <= DATE_FORMAT(`departure`, '%Y-%m-%d')
+                ) OR (
+                    (
+                        DATE_FORMAT(`arrival`, '%Y-%m-%d') >= '$arrival' AND DATE_FORMAT(`arrival`, '%Y-%m-%d') <= '$departure'
+                    ) OR (
+                        DATE_FORMAT(`departure`, '%Y-%m-%d') >= '$arrival' AND DATE_FORMAT(`departure`, '%Y-%m-%d') <= '$departure'
+                    )
+                )
+            ) AND status = 'Pending' AND room_id = " . $result->room_id);
+            
 
 
-                // ============================================================================================================================
-            ?>
+            $curs = $mydb->loadResultList();
+            $resNum = $result->room_num;
+
+            $stats = $mydb->executeQuery();
+            $rows = $mydb->fetch_array($stats);
+            $status = isset($rows['status']) ? $rows['status'] : '';
+
+            // Check if the room is booked this month
+            $isBookedThisMonth = (
+                $status == 'Pending' &&
+                date('m-Y', strtotime($arrival)) == date('m-Y', strtotime($rows['arrival'])) &&
+                date('W-Y', strtotime($arrival)) == date('W-Y', strtotime($rows['arrival']))
+            );
+            
+            
+            // Check if the room is available
+            $isAvailable = ($resNum !== 0 && $status !== 'Pending');
+
+            if ($isBookedThisMonth) {
+                // Room is booked already this month
+                $btn = '<div style="color: red; font-size:10px;"><strong>Booked already this month</strong></div>';
+            } elseif ($resNum == 0) {
+                // Room is either booked
+                $btn = '<div style="color: red; font-size:20px;"><strong>Fully Booked</strong></div>';
+            } elseif ($isAvailable) {
+                // Room is available for booking
+                $btn = '<input type="submit" class="btn btn-primary btn-sm" id="booknow" name="booknow" onclick="return validateBook();" value="Book Now"/>';
+            } else {
+                //  unavailable
+                $btn = '<div style="color: red; font-size:20px;"><strong>Unavailable</strong></div>';
+            }
+
+            // ============================================================================================================================
+    ?>
+
                 <form method="POST" action="index.php?p=accomodation">
                     <input type="hidden" name="ROOMPRICE" value="<?php echo $result->price; ?>">
                     <input type="hidden" name="room_id" value="<?php echo $result->room_id; ?>">
@@ -221,116 +240,3 @@ $accomodation = ' | ' . @$_GET['q'];
     </div>
 </div>
 <!--// rooms & rates -->
-
-<!-- FOR CUSTOMERS REVIEWS feature -->
-<!-- visitors -->
-<!-- <div class="w3l-visitors-agile">
-    <div class="container">
-        <h3 class="title-w3-agileits title-black-wthree">What other visitors experienced</h3>
-    </div>
-    <div class="w3layouts_work_grids">
-        <section class="slider">
-            <div class="flexslider">
-                <ul class="slides">
-                    <li>
-                        <div class="w3layouts_work_grid_left">
-                            <img src="images/5.jpg" alt=" " class="img-responsive" />
-                            <div class="w3layouts_work_grid_left_pos">
-                                <img src="images/c1.jpg" alt=" " class="img-responsive" />
-                            </div>
-                        </div>
-                        <div class="w3layouts_work_grid_right">
-                            <h4>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                Worth to come again
-                            </h4>
-                            <p>Sed tempus vestibulum lacus blandit faucibus.
-                                Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula,
-                                at imperdiet urna. </p>
-                            <h5>Julia Rose</h5>
-                            <p>Germany</p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </li>
-                    <li>
-                        <div class="w3layouts_work_grid_left">
-                            <img src="images/5.jpg" alt=" " class="img-responsive" />
-                            <div class="w3layouts_work_grid_left_pos">
-                                <img src="images/c2.jpg" alt=" " class="img-responsive" />
-                            </div>
-                        </div>
-                        <div class="w3layouts_work_grid_right">
-                            <h4>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                Worth to come again
-                            </h4>
-                            <p>Sed tempus vestibulum lacus blandit faucibus.
-                                Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula,
-                                at imperdiet urna. </p>
-                            <h5>Jahnatan Smith</h5>
-                            <p>United States</p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </li>
-                    <li>
-                        <div class="w3layouts_work_grid_left">
-                            <img src="images/5.jpg" alt=" " class="img-responsive" />
-                            <div class="w3layouts_work_grid_left_pos">
-                                <img src="images/c3.jpg" alt=" " class="img-responsive" />
-                            </div>
-                        </div>
-                        <div class="w3layouts_work_grid_right">
-                            <h4>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                Worth to come again
-                            </h4>
-                            <p>Sed tempus vestibulum lacus blandit faucibus.
-                                Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula,
-                                at imperdiet urna. </p>
-                            <h5>Rosalind Cloer</h5>
-                            <p>Italy</p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </li>
-                    <li>
-                        <div class="w3layouts_work_grid_left">
-                            <img src="images/5.jpg" alt=" " class="img-responsive" />
-                            <div class="w3layouts_work_grid_left_pos">
-                                <img src="images/c4.jpg" alt=" " class="img-responsive" />
-                            </div>
-                        </div>
-                        <div class="w3layouts_work_grid_right">
-                            <h4>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                <i class="fa fa-star-o" aria-hidden="true"></i>
-                                Worth to come again
-                            </h4>
-                            <p>Sed tempus vestibulum lacus blandit faucibus.
-                                Nunc imperdiet, diam nec rhoncus ullamcorper, nisl nulla suscipit ligula,
-                                at imperdiet urna. </p>
-                            <h5>Amie Bublitz</h5>
-                            <p>Switzerland</p>
-                        </div>
-                        <div class="clearfix"> </div>
-                    </li>
-                </ul>
-            </div>
-        </section>
-    </div>
-</div> -->
-<!-- visitors -->

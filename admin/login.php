@@ -21,14 +21,14 @@ require_once("../includes/initialize.php");
     <link href="css/signin.css" rel="stylesheet">
 
     <link rel="icon" type="image/png" href="<?php echo WEB_ROOT; ?>favicon_midway-modified.png">
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="../../assets/js/html5shiv.js"></script>
-      <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
 </head>
-
+<style>
+    body {
+        background-image: url('<?php echo WEB_ROOT; ?>images_copy/cover-photo.jpg');
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+    }
+</style>
 <body>
     <?php
     if (admin_logged_in()) {
@@ -82,6 +82,15 @@ require_once("../includes/initialize.php");
 
     ?>
     <div class="container">
+
+        <div class="row">
+            <div style="position: absolute; top: 20px; left: 20px; padding: 10px; background-color: #fff; border-radius: 10px;">
+                <a href="<?php echo WEB_ROOT; ?>index.php" title="Midway Minkay">
+                    <img src="<?php echo WEB_ROOT; ?>admin/images/logo_minkay.png" alt="Midway Minkay" style="border-radius: 10px;">
+                </a>
+            </div>
+        </div>
+
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
@@ -89,23 +98,34 @@ require_once("../includes/initialize.php");
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" method="POST" action="login.php">
-                            <fieldset>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Username" name="email" type="text" autofocus>
-                                </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <button type="submit" name="btnlogin" class="btn btn-lg btn-success btn-block">Login</button>
-                            </fieldset>
-                        </form>
+                    <form role="form" method="POST" action="login.php">
+                        <fieldset>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Username" name="email" type="text" autofocus>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" placeholder="Password" name="password" type="password" id="passwordField" value="">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input name="remember" type="checkbox" id="showPasswordCheckbox" onchange="togglePassword()"> Show Password
+                                </label>
+                            </div>
+                            <button type="submit" name="btnlogin" class="btn btn-lg btn-success btn-block">Login</button>
+                        </fieldset>
+                    </form>
+                    <script>
+                        function togglePassword() {
+                            var passwordField = document.getElementById("passwordField");
+                            var showPasswordCheckbox = document.getElementById("showPasswordCheckbox");
+
+                            if (showPasswordCheckbox.checked) {
+                                passwordField.type = "text";
+                            } else {
+                                passwordField.type = "password";
+                            }
+                        }
+                    </script>
                     </div>
                 </div>
             </div>

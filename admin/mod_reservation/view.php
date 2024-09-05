@@ -75,7 +75,7 @@ if ($res->status == 'Confirmed') {
     $res = $mydb->loadResultList();
 
     foreach ($res as $cur) {
-      $image = WEB_ROOT . 'admin/mod_room/' . $cur->room_image;
+      $image = WEB_ROOT . 'admin/mod_rooms/' . $cur->room_image;
       $day = dateDiff(date($cur->arrival), date($cur->departure));
 
     ?>

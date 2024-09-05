@@ -54,7 +54,6 @@ if (isset($_POST['clear'])) {
           $count_cart = count($_SESSION['monbela_cart']);
 
           for ($i = 0; $i < $count_cart; $i++) {
-
             $query = "SELECT * FROM `room` r ,`accomodation` a WHERE r.`accomodation_id`=a.`accomodation_id` AND room_id=" . $_SESSION['monbela_cart'][$i]['monbelaroomid'];
             $mydb->setQuery($query);
             $cur = $mydb->loadResultList();

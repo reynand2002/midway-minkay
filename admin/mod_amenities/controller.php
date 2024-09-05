@@ -173,13 +173,5 @@ function _deleteImage($catId)
 		$deleted = @unlink($value->amen_image);
 	}
 
-	/*if (dbNumRows($result)) {
-        while ($row = dbFetchAssoc($result)) {
-		extract($row);
-	        // delete the image file
-    	    $deleted = @unlink($amen_image);
-		}	
-    }
-    */
 	return $deleted;
 }

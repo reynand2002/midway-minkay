@@ -72,7 +72,6 @@ function doEdit(){
 			$user->update($_POST['useraccount_id']); 
 				
 			 	message("[".  $_POST['name'] ."] Upadated successfully!", "success");
-			 	// unset($_SESSION['id']);
 			 	redirect('index.php');
 			
 

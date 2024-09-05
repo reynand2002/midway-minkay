@@ -84,7 +84,7 @@ function doInsert(){
 		}
 	}
   }
-// }
+
 //function to modify rooms
 
  function doEdit(){
@@ -99,7 +99,6 @@ function doInsert(){
 				$room->num_person 	=	$_POST['num_person'];
 				$room->price 		=	$_POST['price'];
 				$room->oroom_num 	=	$_POST['room_num'];
- 				// $room->roomImage    = $location;
 				
 				$room->update($_POST['room_id']); 
 				

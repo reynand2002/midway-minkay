@@ -3,7 +3,6 @@
 	check_message();
 
 	?>
-	<!-- <div class="panel panel-primary"> -->
 	<div class="panel-body">
 		<h3 align="left">List of User</h3>
 		<form action="controller.php?action=delete" Method="POST">

@@ -104,6 +104,15 @@ if (isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count
 	</div>
 	<div class="form-group">
 		<div class="col-md-8">
+			<label class="col-md-4 control-label" for="zip">Zip Code:</label>
+
+			<div class="col-md-8">
+				<input name="zip" type="text" class="form-control input-sm" id="zip" required />
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-md-8">
 			<label class="col-md-4 control-label" for="username">Username:</label>
 			<div class="col-md-8">
 				<input name="username" type="text" class="form-control input-sm" id="username" required />
@@ -113,21 +122,30 @@ if (isset($_SESSION['ERRMSG_ARR']) && is_array($_SESSION['ERRMSG_ARR']) && count
 	<div class="form-group">
 		<div class="col-md-8">
 			<label class="col-md-4 control-label" for="password">Password:</label>
-
 			<div class="col-md-8">
-				<input name="pass" type="password" class="form-control input-sm" id="password" minlength="8" required />
+				<input name="pass" type="password" class="form-control input-sm" id="passwordSpace" minlength="8" required />
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-md-8">
-			<label class="col-md-4 control-label" for="zip">Zip Code:</label>
-
-			<div class="col-md-8">
-				<input name="zip" type="text" class="form-control input-sm" id="zip" required />
-			</div>
+			<label class="col-md-6 control-label">
+				<input name="remember" type="checkbox" id="showPassword" onchange="togglePasswordIt()">Show Password
+			</label>
 		</div>
 	</div>
+	<script>
+		function togglePasswordIt() {
+			var password = document.getElementById("passwordSpace");
+			var showPassword = document.getElementById("showPassword");
+
+			if (showPassword.checked) {
+				password.type = "text";
+			} else {
+				password.type = "password";
+			}
+		}
+	</script>
 
 	&nbsp; &nbsp;
 	<div class="form-group">

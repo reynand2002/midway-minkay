@@ -47,22 +47,7 @@ class User{
 				return false;
 			}	
 				
-	} 	
-/* 	static function AuthenticateMember($email="", $h_upass=""){
-		global $mydb;
-		$res=$mydb->setQuery("SELECT * FROM `user_info` WHERE `email`='" . $email . "' and `pword`='" . $h_upass ."' LIMIT 1");
-		 $found_user = $mydb->loadSingleResult();
-		   $_SESSION['member_id'] = $found_user['member_id'];
-            $_SESSION['fName']     = $found_user['fName'];
-            $_SESSION['lName']     = $found_user['lName'];
-            $_SESSION['email']     = $found_user['email'];
-            $_SESSION['pword']     = $found_user['pword'];
-            $_SESSION['mm']        = $found_user['mm'];
-            $_SESSION['dd']        = $found_user['dd'];
-            $_SESSION['yy']        = $found_user['yy'];
-            $_SESSION['gender']    = $found_user['gender'];
-		return $found_user;	
-	} */	
+	} 		
 	
 	/*---Instantiation of Object dynamically---*/
 	static function instantiate($record) {

@@ -26,7 +26,7 @@ switch ($view) {
 }
 
 
-  include '../modal.php';
+//   include '../modal.php';
 require_once '../themes/backendTemplate.php';
 ?>
 
